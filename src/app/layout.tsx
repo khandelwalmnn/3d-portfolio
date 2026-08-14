@@ -1,25 +1,30 @@
-import Footer from '@/components/main/Footer'
-import { Navbar } from '@/components/main/Navbar'
-import { ThemeProvider } from '@/components/theme-provider'
-import AnimatedBackground from '@/components/AnimatedBackground'
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Instrument_Serif, JetBrains_Mono, Outfit } from 'next/font/google'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const display = Instrument_Serif({
+  weight: '400',
   subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const body = Outfit({
   subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
+const mono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Manan Khandelwal | Full Stack Developer',
+  title: 'Manan · A Universe',
   description:
-    'Full Stack Developer specializing in React Native, Node.js, and modern web technologies. Building scalable web and mobile applications with expertise in JavaScript, GraphQL, and cloud technologies. Based in Delhi, India.',
+    'An interactive cinematic journey through the world of Manan Khandelwal — AI Engineer, React Native Developer, and builder.',
 }
 
 export default function RootLayout({
@@ -28,14 +33,11 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}>
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <AnimatedBackground />
-          <Navbar />
-          {children}
-        </ThemeProvider>
-        <Footer />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body
+        className={`${display.variable} ${body.variable} ${mono.variable} overflow-x-hidden antialiased`}
+      >
+        {children}
       </body>
     </html>
   )

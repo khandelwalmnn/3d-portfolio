@@ -32,12 +32,7 @@ function Stars() {
     <group ref={ref}>
       <points>
         <bufferGeometry>
-          <bufferAttribute
-            attach="attributes-position"
-            count={5000}
-            array={positions}
-            itemSize={3}
-          />
+          <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         </bufferGeometry>
         <pointsMaterial
           size={0.5}
