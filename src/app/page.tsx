@@ -1,5 +1,5 @@
-import Experience from '@/components/cinematic/Experience'
+import Home from '@/components/home/Home'
 
-export default function Home() {
-  return <Experience />
+export default function Page() {
+  return <Home />
 }

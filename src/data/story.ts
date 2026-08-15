@@ -6,7 +6,6 @@ export const skillsConstellation = [
     projects: 8,
     confidence: 92,
     fact: 'Shipped KYC, payments, and push for apps used by 10L+ retailers.',
-    position: { x: -2.2, y: 1.4, z: 0 },
   },
   {
     id: 'nodejs',
@@ -15,7 +14,6 @@ export const skillsConstellation = [
     projects: 12,
     confidence: 90,
     fact: 'Microservices, event pipelines, and Hasura GraphQL backends.',
-    position: { x: 0.4, y: 2.1, z: 0.2 },
   },
   {
     id: 'typescript',
@@ -24,7 +22,6 @@ export const skillsConstellation = [
     projects: 15,
     confidence: 94,
     fact: 'Default language across mobile, web, and API surfaces.',
-    position: { x: 2.0, y: 1.2, z: -0.1 },
   },
   {
     id: 'go',
@@ -33,7 +30,6 @@ export const skillsConstellation = [
     projects: 2,
     confidence: 68,
     fact: 'Exploring for high-throughput real-time services.',
-    position: { x: -1.6, y: -0.3, z: 0.3 },
   },
   {
     id: 'postgres',
@@ -42,7 +38,6 @@ export const skillsConstellation = [
     projects: 10,
     confidence: 88,
     fact: 'Schema design, indexes, and Hasura-driven data graphs.',
-    position: { x: 0.2, y: 0.1, z: 0 },
   },
   {
     id: 'redis',
@@ -51,7 +46,6 @@ export const skillsConstellation = [
     projects: 5,
     confidence: 80,
     fact: 'Caching and ephemeral state for snappy mobile experiences.',
-    position: { x: 1.8, y: -0.5, z: 0.2 },
   },
   {
     id: 'graphql',
@@ -60,7 +54,6 @@ export const skillsConstellation = [
     projects: 7,
     confidence: 86,
     fact: 'Hasura event triggers powering notifications and workflows.',
-    position: { x: -0.6, y: -1.5, z: -0.2 },
   },
   {
     id: 'ai',
@@ -69,7 +62,6 @@ export const skillsConstellation = [
     projects: 4,
     confidence: 78,
     fact: 'Building agents and intelligent tooling into product surfaces.',
-    position: { x: 1.1, y: -1.8, z: 0.1 },
   },
   {
     id: 'docker',
@@ -78,7 +70,6 @@ export const skillsConstellation = [
     projects: 6,
     confidence: 82,
     fact: 'Containerized services for predictable deploys.',
-    position: { x: -2.4, y: -1.2, z: 0 },
   },
   {
     id: 'aws',
@@ -87,11 +78,25 @@ export const skillsConstellation = [
     projects: 5,
     confidence: 80,
     fact: 'SQS queues and cloud messaging for reliable async work.',
-    position: { x: 2.5, y: 0.4, z: -0.3 },
   },
 ] as const
 
-export const projectPlanets = [
+export interface Project {
+  id: string
+  title: string
+  subtitle: string
+  description: string
+  tech: string[]
+  architecture: string
+  challenges: string
+  github: string
+  demo: string
+  image: string
+  /** Gallery images for the project's detail page. Falls back to [image] when omitted. */
+  slides?: string[]
+}
+
+export const projects: Project[] = [
   {
     id: 'grogo',
     title: 'GroGo',
@@ -104,11 +109,6 @@ export const projectPlanets = [
     github: 'https://github.com/mnnkhndlwl/kharido',
     demo: 'https://github.com/mnnkhndlwl/kharido',
     image: '/gorgo.png',
-    texture: '/textures/planets/jupiter.jpg',
-    color: '#7c5cff',
-    atmosphere: '#c4b5fd',
-    position: { x: -3.2, y: 0.6, z: 0 },
-    size: 1.15,
   },
   {
     id: 'compilerxpress',
@@ -122,43 +122,43 @@ export const projectPlanets = [
     github: 'https://github.com/mnnkhndlwl/CompilerXpress',
     demo: 'https://github.com/mnnkhndlwl/CompilerXpress',
     image: '/compiler.png',
-    texture: '/textures/planets/neptune.jpg',
-    color: '#38bdf8',
-    atmosphere: '#bae6fd',
-    position: { x: 0.2, y: -0.4, z: 0.5 },
-    size: 1.0,
   },
   {
     id: 'ludo',
     title: 'Ludo Game',
     subtitle: 'Playful motion on mobile',
-    description:
-      'A Ludo experience in React Native with Redux, Reanimated, and TypeScript.',
+    description: 'A Ludo experience in React Native with Redux, Reanimated, and TypeScript.',
     tech: ['React Native', 'Redux', 'Reanimated', 'TypeScript'],
     architecture: 'Client-side game state with animated board interactions',
     challenges: 'Buttery piece motion, turn logic, and delightful micro-interactions.',
     github: 'https://github.com/mnnkhndlwl/ludo_game',
     demo: 'https://github.com/mnnkhndlwl/ludo_game',
     image: '/image.png',
-    texture: '/textures/planets/mars.jpg',
-    color: '#f472b6',
-    atmosphere: '#fbcfe8',
-    position: { x: 3.0, y: 0.8, z: -0.2 },
-    size: 0.9,
   },
-] as const
+]
 
-export const assetCredits = [
-  {
-    name: 'Planet & moon surface maps',
-    author: 'NASA imagery via threex.planets',
-    license: 'Public domain / free redistribution',
-    url: 'https://github.com/jeromeetienne/threex.planets',
-    use: 'Moon texture in the sky canvas',
-  },
-] as const
+export interface JourneyFeature {
+  title: string
+  description: string
+  screenshots?: string[]
+}
 
-export const journeyMilestones = [
+export interface JourneyMilestone {
+  id: string
+  title: string
+  role: string
+  period: string
+  focus: string[]
+  summary: string
+  /** Gallery images for the role's detail page. */
+  slides?: string[]
+  /** Fuller write-up of the role; falls back to rendering `summary` when omitted. */
+  overview?: string
+  /** Feature-by-feature breakdown, each optionally with its own screenshots. */
+  features?: JourneyFeature[]
+}
+
+export const journeyMilestones: JourneyMilestone[] = [
   {
     id: 'blackhat',
     title: 'Blackhat Code Technology',
@@ -186,7 +186,7 @@ export const journeyMilestones = [
     summary:
       'KYC, purchase order dispatch, FCM + SQS notifications, payments — shipping for 10L+ retailers.',
   },
-] as const
+]
 
 export const workshopLines = [
   'Building scalable mobile experiences',
@@ -231,12 +231,10 @@ export const contact = {
   linkedin: 'https://linkedin.com/in/mnnkhndlwl',
 } as const
 
-export const chapters = [
-  { id: 'beginning', label: 'Beginning' },
+export const navLinks = [
   { id: 'skills', label: 'Skills' },
   { id: 'projects', label: 'Projects' },
   { id: 'journey', label: 'Journey' },
-  { id: 'workshop', label: 'Workshop' },
   { id: 'dreams', label: 'Dreams' },
-  { id: 'observatory', label: 'Observatory' },
+  { id: 'contact', label: 'Contact' },
 ] as const
