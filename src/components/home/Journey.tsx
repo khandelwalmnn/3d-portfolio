@@ -2,8 +2,8 @@
 
 import { journeyMilestones } from '@/data/story'
 import { useReveal } from '@/hooks/use-reveal'
-import Link from 'next/link'
 import { SectionHeading } from './SectionHeading'
+import { JourneySummaryList } from './JourneySummaryList'
 
 export default function Journey() {
   const ref = useReveal<HTMLDivElement>()
@@ -13,19 +13,26 @@ export default function Journey() {
       <SectionHeading eyebrow="Journey" title="How I got here" />
       <div ref={ref} className="reveal mx-auto flex max-w-3xl flex-col gap-5">
         {journeyMilestones.map((m, i) => (
-          <Link key={m.id} href={`/journey/${m.id}`} className="card-hard flex gap-5 p-6">
+          <div key={m.id} className="card-hard flex gap-5 p-6">
             <span className="font-display text-3xl" style={{ color: 'var(--ink-soft)' }}>
               0{i + 1}
             </span>
             <div className="flex-1">
-              <p className="font-mono text-xs uppercase tracking-wide" style={{ color: 'var(--ink-soft)' }}>
+              <p
+                className="font-mono text-xs uppercase tracking-wide"
+                style={{ color: 'var(--ink-soft)' }}
+              >
                 {m.period}
               </p>
               <h3 className="mt-1 font-display text-2xl">{m.title}</h3>
               <p className="font-body text-sm" style={{ color: 'var(--ink-soft)' }}>
                 {m.role}
               </p>
-              <p className="mt-3 font-body text-sm leading-relaxed">{m.summary}</p>
+              {Array.isArray(m.summary) ? (
+                <JourneySummaryList summary={m.summary} />
+              ) : (
+                <p className="mt-3 font-body text-sm leading-relaxed">{m.summary}</p>
+              )}
               <div className="mt-4 flex flex-wrap gap-1.5">
                 {m.focus.map((f) => (
                   <span key={f} className="tag-pill-outline">
@@ -34,7 +41,7 @@ export default function Journey() {
                 ))}
               </div>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </section>

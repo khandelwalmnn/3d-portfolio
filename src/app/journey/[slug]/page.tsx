@@ -1,5 +1,6 @@
 import { DetailHeader } from '@/components/detail/DetailHeader'
 import { Slideshow } from '@/components/detail/Slideshow'
+import { JourneySummaryList } from '@/components/home/JourneySummaryList'
 import { journeyMilestones } from '@/data/story'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
@@ -44,7 +45,16 @@ export default async function JourneyDetailPage({
           <p className="font-mono text-xs uppercase tracking-[0.15em]" style={{ color: 'var(--ink-soft)' }}>
             Overview
           </p>
-          <p className="mt-3 font-body text-sm leading-relaxed">{milestone.overview ?? milestone.summary}</p>
+          {milestone.overview ? (
+            <p className="mt-3 font-body text-sm leading-relaxed">{milestone.overview}</p>
+          ) : Array.isArray(milestone.summary) ? (
+            <JourneySummaryList
+              summary={milestone.summary}
+              className="mt-3 list-disc space-y-1.5 pl-5 font-body text-sm leading-relaxed"
+            />
+          ) : (
+            <p className="mt-3 font-body text-sm leading-relaxed">{milestone.summary}</p>
+          )}
         </div>
 
         <div className="mt-10">

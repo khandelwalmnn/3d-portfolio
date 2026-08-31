@@ -14,11 +14,9 @@ export default function Skills() {
         {skillsConstellation.map((s) => (
           <div key={s.id} className="card-hard flex flex-col gap-3 p-5">
             <p className="font-display text-lg">{s.name}</p>
-            <div className="flex flex-wrap items-baseline gap-2 font-mono text-[11px]" style={{ color: 'var(--ink-soft)' }}>
-              <span>{s.years}y</span>
-              <span>{s.projects} proj</span>
-              <span>{s.confidence}%</span>
-            </div>
+            <p className="font-mono text-[11px]" style={{ color: 'var(--ink-soft)' }}>
+              {s.years} {s.years === 1 ? 'year' : 'years'}
+            </p>
             <p className="font-body text-xs leading-relaxed" style={{ color: 'var(--ink-soft)' }}>
               {s.fact}
             </p>

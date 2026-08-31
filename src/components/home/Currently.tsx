@@ -7,8 +7,8 @@ export default function Currently() {
       <SectionHeading eyebrow="Right now" title="Currently building" />
       <div className="card-hard mx-auto grid max-w-3xl gap-6 p-7 md:grid-cols-[1fr_1.1fr]">
         <p className="font-body text-sm leading-relaxed">
-          Full Stack Developer at Badho Technologies — React Native, event-driven backends, and
-          AI-shaped product surfaces for retailers across India.
+          Mobile Application Developer at I3DigitalHealth — React Native, building better healthcare
+          solutions for the cancer patients.
         </p>
         <div
           className="rounded-2xl p-4 font-mono text-xs leading-relaxed"
